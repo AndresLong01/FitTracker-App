@@ -2,11 +2,9 @@ const db = require("../models")
 
 module.exports = app => {
     app.post("/api/workouts", ({body}, res) => {
-        db.Exercise.create({})
-            .then(dbExercise => {
-                console.log(dbExercise);
-                console.log(dbExercise._id);
-                res.json(dbExercise);
+        db.Workout.create({})
+            .then(dbWorkout => {
+                res.json(dbWorkout);
             })
             .catch(({message}) => {
                 console.log(message);
@@ -15,22 +13,22 @@ module.exports = app => {
     app.put("/api/workouts/:id", (req, res) => {
         let id= req.params.id;
         let data = req.body;
-        db.Exercise.findOneAndUpdate({_id: id}, {
-            type: data.type,
-            name: data.name,
-            weight: data.weight,
-            sets: data.sets,
-            reps: data.reps,
-            duration: data.duration
-        }).then(dbUpdate => {
+        console.log(data)
+        db.Workout.findOneAndUpdate({_id: id}, 
+            {exercises: data}
+        ).then(dbUpdate => {
+            console.log(dbUpdate)
             res.send(dbUpdate);
         })
     })
     app.get("/api/workouts/", (req, res) => {
-        db.Exercise.find({})
-            .then(dbExercise => {
-                res.json(dbExercise);
+        db.Workout.find({})
+            .then(dbWorkout => {
+                res.json(dbWorkout);
             })
     })
-
+    app.get("/api/workouts/range", (req, res) => {
+        db.Workout.find({})
+            .then(dbRange)
+    })
 }
