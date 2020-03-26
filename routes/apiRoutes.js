@@ -36,6 +36,8 @@ module.exports = app => {
     })
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
-            .then(dbRange)
+            .then(data => {
+                res.json(data);
+            })
     })
 }
