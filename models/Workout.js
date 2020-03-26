@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+//Declaring a single Model to take care of all.
+//This Model has declarations for the day the workout was made, the exercises done that day
+//and the total Duration as a declaration to then be populated.
 const WorkoutSchema = new Schema({
     day: {
         type: Date,
@@ -39,7 +42,7 @@ const WorkoutSchema = new Schema({
     }
 })
 
-
+//Creating the model as a Mongoose model ready to be exported to other scripts
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
 module.exports = Workout;

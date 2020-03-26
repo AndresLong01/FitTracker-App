@@ -1,4 +1,4 @@
-//const db = require("../models");
+//This is just the HTML, nothing to see here just some boring stuff...
 const path = require("path");
 
 module.exports = app => {
